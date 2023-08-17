@@ -9,13 +9,12 @@ import queue
 
 searching = True
 
-# Diese Funktion wird aufgerufen, wenn der Abbrechen-Button gedrückt wird
-
 def threaded_search_term():
     search_thread = threading.Thread(target=search_term)
     search_thread.start()
 
 def stop_search():
+    # Diese Funktion wird aufgerufen, wenn der Abbrechen-Button gedrückt wird
     global searching
     searching = False
 
@@ -109,7 +108,6 @@ def update_gui_from_queue():
             elif update["action"] == "update_progress":
                 progress_var.set(update["value"])
                 progress_label.config(text=f"{int(update['value'])} %")
-            # ... [rest of your queue processing]
     except queue.Empty:
         pass
     app.after(100, update_gui_from_queue)
