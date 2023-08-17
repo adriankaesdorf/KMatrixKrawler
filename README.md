@@ -16,21 +16,14 @@ Use case: You know a signal exists but want to find out the owner or the origin 
 
 ## Prerequisites
 
-- Python 3.x installed on your system.
-- `pip` for package management.
-- Familiarity with the command-line or terminal usage.
-- Access to K-Matrix directory: "S:/EE_Elektrik_Elektronik/Vernetzungsdaten/V000_Verbundrelease/E3 1.2_P/Aktuell/K-Matrix"
+- Anaconda installed on your system. (regular python doesn't work for CARIAD)
+- Use Anaconda Prompt
+- Access to K-Matrix directory: `S:/EE_Elektrik_Elektronik/Vernetzungsdaten/V000_Verbundrelease/E3 1.2_P/Aktuell/K-Matrix`
 
 ## Installation
 
-1. Ensure Python is installed on your system.
-2. Clone this repository or download the source code.
-3. Navigate to the project directory in your terminal or command prompt.
-4. Install required packages:
-
-```bash
-pip install -r requirements.txt
-```
+1. Clone this repository or download the source code.
+2. Navigate to the project directory in your terminal or command prompt.
 
 ## Usage
 
@@ -41,10 +34,15 @@ python KMatrixKrawler.py
 ```
 
 2. In the GUI:
-- Choose the directory containing the Excel files.
-- Input the search term.
-- Click the "Search" button.
+- Input the signal name.
+- Click the "Suchen" button.
 
 3. Review the results displayed in the GUI.
 
-## Troubleshooting
+## Contributions
+
+For contributions, please create a pull request or open an issue to discuss proposed changes.
+
+## License
+
+MIT License. See LICENSE.txt file for more information.
