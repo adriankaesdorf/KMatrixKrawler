@@ -45,4 +45,4 @@ For contributions, please create a pull request or open an issue to discuss prop
 
 ## License
 
-MIT License. See LICENSE.txt file for more information.
+MIT License. See LICENSE file for more information.
