@@ -69,7 +69,7 @@ def search_term():
     result_text.delete(1.0, tk.END)
 
     for match in find_in_excel(folder, term, update_progress):
-        update_queue.put({"action": "insert_text", "text": f"Datei: {match[0]}\nSheet: {match[1]}\nZeile: {match[2]}\nZellinhalt: {match[3]}\n\n"})
+        update_queue.put({"action": "insert_text", "text": f"Datei: {match[0]}\nSheet: {match[1]}\nZeile: {match[2]}\n\n"})
         app.update_idletasks()  # This ensures the GUI is updated after each result is added
     current_file_label.config(text="Analyse abgeschlossen!")
 
