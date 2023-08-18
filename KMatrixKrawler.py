@@ -9,6 +9,9 @@ import queue
 
 searching = True
 
+def on_enter_pressed(event):
+    threaded_search_term()
+
 def threaded_search_term():
     search_thread = threading.Thread(target=search_term)
     search_thread.start()
@@ -19,7 +22,7 @@ def stop_search():
     searching = False
 
 def find_in_excel(folder, term, progress_callback):
-    all_files = [os.path.join(dirpath, f) for dirpath, _, filenames in os.walk(folder) for f in filenames if f.endswith(('.xlsx', '.xls'))]
+    all_files = [os.path.join(dirpath, f) for dirpath, _, filenames in os.walk(folder) for f in filenames if f.endswith(('.xlsx', '.xls')) and "Vergleich" not in f and not f.startswith('~')]
     total_files = len(all_files)
 
     for count, full_path in enumerate(all_files, start=1):
@@ -137,6 +140,7 @@ tk.Button(frame, text="Ordner auswählen", command=lambda: folder_entry.insert(0
 tk.Label(frame, text="Suchbegriff:").grid(row=1, column=0, sticky=tk.W)
 search_entry = tk.Entry(frame, width=50)
 search_entry.grid(row=1, column=1, pady=(0,10))
+search_entry.bind('<Return>', on_enter_pressed)
 tk.Button(frame, text="Suchen", command=threaded_search_term).grid(row=1, column=2)
 
 progress_frame = tk.Frame(app)
@@ -153,14 +157,21 @@ progress_label.grid(row=0, column=1, padx=(5, 0))  # Added padding to separate f
 
 # Position result_text correctly
 result_text = tk.Text(app, height=15, width=70)
-result_text.grid(row=3, column=0, padx=10, pady=5, sticky=tk.W+tk.E)
+scrollbar = tk.Scrollbar(app, command=result_text.yview)
+result_text.config(yscrollcommand=scrollbar.set)
+result_text.grid(row=3, column=0, padx=10, pady=5, sticky=tk.W+tk.E+tk.N+tk.S)
+scrollbar.grid(row=3, column=1, pady=5, sticky=tk.N+tk.S)
 
 # Button in GUI hinzufügen
 cancel_button = tk.Button(app, text="Suche abbrechen", command=stop_search)
 cancel_button.grid(row=4, column=0, pady=10)
 
 # Configuring the column weights
-app.columnconfigure(0, weight=1)  # This makes sure the column in main window expands
+# app.columnconfigure(0, weight=1)  # This makes sure the column in main window expands
+app.grid_rowconfigure(3, weight=1)
+app.grid_columnconfigure(0, weight=1)
+
+
 progress_frame.columnconfigure(0, weight=1)  # This ensures the progress bar column expands
 
 
