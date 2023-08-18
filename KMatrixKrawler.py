@@ -43,7 +43,7 @@ def find_in_excel(folder, term, progress_callback):
                         for row in sheet.iter_rows():
                             for cell in row:
                                 if cell.value and term.lower() in str(cell.value).lower():
-                                    yield full_path, sheet.title, cell.row  # Dies gibt jeden gefundenen Match einzeln zurück
+                                    yield full_path, sheet.title, cell.row, cell.value  # This returns each found match individually
                 except Exception as e:
                     print(f"Problem mit Datei: {full_path}")
                     print(e)
