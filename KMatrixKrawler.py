@@ -58,6 +58,7 @@ def find_in_excel(folder, term, progress_callback):
 
 def search_term():
     folder = folder_entry.get()
+
     term = search_entry.get()
 
     if not folder or not term:
@@ -135,7 +136,9 @@ tk.Label(frame, text="Ordner:").grid(row=0, column=0, sticky=tk.W)
 folder_entry = tk.Entry(frame, width=50)
 folder_entry.insert(0, default_folder)  # Setzt den Standardordnerpfad
 folder_entry.grid(row=0, column=1, pady=(0,10))
-tk.Button(frame, text="Ordner auswählen", command=lambda: folder_entry.insert(0, filedialog.askdirectory())).grid(row=0, column=2)
+# tk.Button(frame, text="Ordner auswählen", command=lambda: folder_entry.insert(0, filedialog.askdirectory())).grid(row=0, column=2)
+tk.Button(frame, text="Ordner auswählen", command=lambda: [folder_entry.delete(0, tk.END), folder_entry.insert(0, filedialog.askdirectory())]).grid(row=0, column=2)
+
 
 tk.Label(frame, text="Suchbegriff:").grid(row=1, column=0, sticky=tk.W)
 search_entry = tk.Entry(frame, width=50)
